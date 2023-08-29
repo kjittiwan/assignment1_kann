@@ -3,7 +3,9 @@
 $font-primary: 'Poppins', sans-serif;
 $green: #6eda78;
 $orange: #ffa200;
-$light-gray: rgb(209 213 219);
+$light-gray: rgb(209, 213, 219);
+
+// Shape styles
 %triangle {
   width: 0;
   height: 0;
@@ -11,43 +13,49 @@ $light-gray: rgb(209 213 219);
   border-right: 4.5rem solid transparent;
   border-bottom: 8rem solid gray;
 }
+
 .square {
-  background-color: gray;  
+  background-color: gray;
   width: 8rem;
   height: 8rem;
 }
+
 .circle {
-  background-color: gray;  
+  background-color: gray;
   width: 8rem;
   height: 8rem;
   border-radius: 100%;
 }
+
 .oval {
-  background-color: gray;  
+  background-color: gray;
   width: 20rem;
   height: 8rem;
-  border-radius: 100%;  
+  border-radius: 100%;
 }
+
 .trapezoid {
   width: 20rem;
   height: 0;
   border-bottom: 8rem solid gray;
   border-left: 4.5rem solid transparent;
   border-right: 4.5rem solid transparent;
-
   display: inline-block;
 }
+
 .rectangle {
-  background-color: gray;  
+  background-color: gray;
   width: 20rem;
   height: 8rem;
 }
+
 .rhombus {
-  background-color: gray;  
+  background-color: gray;
   width: 18rem;
   height: 8rem;
   transform: skew(15deg);
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -61,9 +69,8 @@ h1 {
   font-size: 2rem;
 }
 
-
 section {
-  background: rgb(110,218,120);
+  background: rgb(110, 218, 120);
   background: linear-gradient(90deg, $green 14%, $orange 76%);
   width: 100vw;
   height: 100vh;
@@ -71,12 +78,14 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
 }
+
 header {
   display: flex;
   width: 100%;
@@ -84,6 +93,7 @@ header {
   align-items: center;
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
+
 .button-container {
   display: flex;
   align-items: center;
@@ -91,6 +101,7 @@ header {
   padding-bottom: 2rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid gray;
+
   & > *:not(:last-child) {
     margin-right: 1rem;
   }
@@ -107,32 +118,36 @@ header {
       background-color: $orange;
       border-color: $orange;
     }
+
     .triangle-upright {
       @extend %triangle;
-      margin-right: 9rem
+      margin-right: 9rem;
     }
+
     .triangle-downward {
       @extend %triangle;
       transform: rotate(180deg);
     }
+
     .triangle-left {
       @extend %triangle;
       transform: rotate(-90deg);
-
     }
+
     .triangle-right {
       @extend %triangle;
       transform: rotate(90deg);
     }
   }
 }
+
 .grid-container {
   width: 90%;
   align-self: end;
   display: grid;
   grid-template-areas:
-  ". a a b b c c"
-  "d d e e f f .";
+    '. a a b b c c'
+    'd d e e f f .';
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
@@ -146,23 +161,23 @@ header {
     align-items: center;
     justify-content: center;
   }
-  .grid-item-1 {
+
+  .grid-item-0 {
     grid-area: a;
   }
-  .grid-item-2 {
+  .grid-item-1 {
     grid-area: b;
   }
-  .grid-item-3 {
+  .grid-item-2 {
     grid-area: c;
   }
-  .grid-item-4 {
+  .grid-item-3 {
     grid-area: d;
   }
-  .grid-item-5 {
+  .grid-item-4 {
     grid-area: e;
   }
-  .grid-item-6 {
+  .grid-item-5 {
     grid-area: f;
   }
 }
-
