@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Select } from 'antd';
 import './styles/App.scss';
-
+import { useTranslation } from 'react-i18next';
 // Define a type for the state setter function
 type SetArrayState = React.Dispatch<React.SetStateAction<string[]>>;
-
+type LanguageObject = {
+  [key: string]: { nativeName: string };
+};
 const App: React.FC = () => {
+  const { t, i18n } = useTranslation()
+  const [currentLang, setCurrentLang] = useState('en')
+  const lngs : LanguageObject = {
+    en: { nativeName: 'English' },
+    th: { nativeName: 'Thai' }
+  };
   const [items, setItems] = useState<string[]>([
     'square',
     'circle',
@@ -52,21 +60,25 @@ const App: React.FC = () => {
   };
 
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    if (lngs[value]) {
+      i18n.changeLanguage(value); // value already represents the key
+      console.log(`selected ${value}`);
+      setCurrentLang(value)
+    }
   };
   return (
     <section>
       <header>
         <Select
-          defaultValue="en"
-          onChange={handleChange}
+          defaultValue='en'
+          onChange={handleChange}  
           options={[
-            { value: 'en', label: 'En' },
-            { value: 'th', label: 'Th' },
+            { value: 'en', label: `${t('language.en')}` },
+            { value: 'th', label: `${t('language.th')}` },
           ]}
           className='select'
         />
-        <h1>Layout & Style</h1>
+        <h1>{t('header')}</h1>
 
       </header>
       <main>
@@ -78,7 +90,7 @@ const App: React.FC = () => {
           >
             <div className="triangle-left" />
             <div className='button-description'>
-              <span>Move shape</span>
+              <span>{t('move.position')}</span>
             </div>
           </Button>
           {/* Button to switch array halves (swapping rows in the grid) */}
@@ -89,7 +101,7 @@ const App: React.FC = () => {
             <div className="triangle-upright" />
             <div className="triangle-downward" />
             <div className='button-description'>
-              <span>Move position</span>
+              <span>{t('move.shape')}</span>
             </div>
           </Button>
           {/* Button to move items forward */}
@@ -99,7 +111,7 @@ const App: React.FC = () => {
           >
             <div className="triangle-right" />
             <div className='button-description'>
-              <span>Move shape</span>
+              <span>{t('move.position')}</span>
             </div>
           </Button>
         </div>
@@ -120,4 +132,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
