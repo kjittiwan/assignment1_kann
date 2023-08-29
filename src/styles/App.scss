@@ -88,10 +88,16 @@ main {
 
 header {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+  .select {
+    position:absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+  }
 }
 
 .button-container {
@@ -106,19 +112,27 @@ header {
     margin-right: 1rem;
   }
 
-  button {
+  .action-button {
     padding: 1.8rem 7rem 1.8rem 7rem;
     width: fit-content;
     height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    position: relative;
     &:hover {
       background-color: $orange;
       border-color: $orange;
     }
-
+    .button-description {
+      background-color: $green;
+      font-size: 0.8rem;
+      color: white;
+      position: absolute;
+      bottom: -0.5rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0.8rem;
+    }
     .triangle-upright {
       @extend %triangle;
       margin-right: 9rem;
