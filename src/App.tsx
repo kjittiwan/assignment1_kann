@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Select } from 'antd';
 import './styles/App.scss';
 import { useTranslation } from 'react-i18next';
@@ -9,11 +9,11 @@ type LanguageObject = {
 };
 const App: React.FC = () => {
   const { t, i18n } = useTranslation()
-  const [currentLang, setCurrentLang] = useState('en')
   const lngs : LanguageObject = {
     en: { nativeName: 'English' },
     th: { nativeName: 'Thai' }
   };
+
   const [items, setItems] = useState<string[]>([
     'square',
     'circle',
@@ -61,23 +61,37 @@ const App: React.FC = () => {
 
   const handleChange = (value: string) => {
     if (lngs[value]) {
-      i18n.changeLanguage(value); // value already represents the key
-      console.log(`selected ${value}`);
-      setCurrentLang(value)
+      i18n.changeLanguage(value);
+      console.log(i18n.resolvedLanguage);
     }
   };
+  const selectedLanguage = i18n.resolvedLanguage === 'th' ? 'th' : 'en';
   return (
     <section>
       <header>
         <Select
-          defaultValue='en'
-          onChange={handleChange}  
-          options={[
-            { value: 'en', label: `${t('language.en')}` },
-            { value: 'th', label: `${t('language.th')}` },
-          ]}
+        value={selectedLanguage}
+          defaultValue={i18n.resolvedLanguage === 'th'
+          ? 'th'
+          : 'en'
+          }
+          onChange={handleChange}
           className='select'
-        />
+        >
+          <Select.Option
+          value='en'
+          disabled={i18n.resolvedLanguage === 'en'}
+          >
+            {t('language.en')}
+          </Select.Option>
+          <Select.Option
+          value='th'
+          disabled={i18n.resolvedLanguage === 'th'}>
+            {t('language.th')}
+          </Select.Option>
+        </Select>
+
+
         <h1>{t('header')}</h1>
 
       </header>

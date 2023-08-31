@@ -125,9 +125,11 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
+
     &:hover {
       background-color: $orange;
-      border-color: $orange;
+      border: 1px solid $orange;
+      outline: none;
     }
     .button-description {
       background-color: $green;
@@ -159,6 +161,7 @@ header {
     }
   }
 }
+
 
 .grid-container {
   width: 90%;
