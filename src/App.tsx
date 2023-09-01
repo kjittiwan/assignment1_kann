@@ -110,7 +110,7 @@ const App: React.FC = () => {
           {/* Button to switch array halves (swapping rows in the grid) */}
           <Button
             onClick={() => switchArrayHalves(items, setItems)}
-            className="action-button"
+            className="action-button middle-button"
           >
             <div className="triangle-upright" />
             <div className="triangle-downward" />
@@ -132,12 +132,12 @@ const App: React.FC = () => {
         <div className="grid-container">
           {/* Render each item in the array */}
           {items.map((item, index, array) => (
-            <button
+            <Button
             key={item}
             onClick={() => {randomizeArrayOrder(array, setItems)}}
-            className={`grid-item-${index}`}>
-              <div className={`${item}`} />
-            </button>
+            className={`grid-item-${index} action-button`}>
+              <div className={`${item}`}></div>
+            </Button>
           ))}
         </div>
       </main>
